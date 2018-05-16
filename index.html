@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Hangman
+        </title>
+    </head>
+    <body>
+
+        <h3 id="word-blanks">_ _ _ _ _ _ _ _ _</h3>
+
+        <h4 id="guesses-left" style="color:red"></h4>
+        <h4 id="guessedLetters"></h4>
+        <h5 id="winning" style="color:green"></h5>
+        <h5 id="losing"></h5>
+
+
+        <button onclick="startGame">Start a Game</button>
+        <button onclick="newgame">New Game</button>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+var wordBank = ['red', 'blue', 'yellow'];
+var wins = 0;
+var loss = 0;
+var wrongLetter = [];
+var guessesLeft = 10;
+var underScores = [];
+var userGuesses = [];
+var randWord;
+var wincount = 0;
+
+
+
+//Functions
+//================================
+function startGame() {
+
+ wins = 0;
+ loss = 0;
+ wrongLetter = [];
+ guessesLeft = 10;
+ underScores = [];
+ userGuesses = [];
+ randWord;
+ wincount = 0;
+    
+    
+    randWord = wordBank[Math.floor(Math.random() * wordBank.length)]; //picks a random word from word bank
+    console.log(randWord);
+    console.log(randWord.length);
+
+    for( var i = 0; i < randWord.length; i++) { //underscore is pushed to the array of the same length as the random word
+        console.log(i);
+        underScores.push(' _ ');
+    }
+    //Prints underscores to the screen
+    console.log(underScores);
+    document.getElementById('word-blanks').innerHTML = underScores.join(" "); //gets rid of commas
+
+    //Prints this on screen
+    document.getElementById("guesses-left").innerHTML = guessesLeft;
+};
+
+//Logging the key presses
+//================================
+
+document.onkeypress = function(event) {
+    if ((wincount === randWord.length) || (userGuesses === 0)) { //if the word is correctly guessed, this prevents the user from entering any more bad guesses
+        return;
+    }
+    userGuesses = event.key;//user presses a key and it is logged
+    console.log(userGuesses);
+
+    if(randWord.indexOf(userGuesses) > -1) { //checking if the letter the user pressed is in the random word
+        console.log('yes');
+
+        for(var i = 0; i < randWord.length; i++) {
+            if(randWord[i] === userGuesses) {
+                underScores[i] = userGuesses;
+                console.log(underScores);
+                wincount++;
+                document.getElementById("word-blanks").innerHTML = underScores.join(" ");
+                winlose();
+                
+            }
+        }
+
+    } else {
+        
+
+        wrongLetter.push(userGuesses); //putting wrong letters into an array for the user to see what has been used
+        console.log(wrongLetter);
+        guessesLeft--;
+        winlose();
+        document.getElementById("guessedLetters").innerHTML = wrongLetter.join(" ");
+        document.getElementById("guesses-left").innerHTML = guessesLeft;
+        
+    }
+};
+
+function winlose() {
+    if(wincount === randWord.length) {
+        alert("winner");
+        startGame();
+        document.getElementById("winning").innerHTML = wins;
+        
+    } else if(guessesLeft === 0) {
+        alert("you suck");
+        startGame();
+        document.getElementById("losing").innerHTML = loss;
+        
+    }
+};
+
+function newgame() {
+    
+        guessesLeft = 10;
+        underScores = [];
+        startGame();
+    };
+
+
+
+
+
+
+
+
+
+
+
+
+//Main Function
+//===============================
+
+startGame();
+
+
+        </script>
+    </body>
+</html>
