@@ -88,25 +88,23 @@ document.onkeypress = function(event) {
 };
 
 function winlose() {
-    if(wincount === randWord.length+1) {
-        alert("winner");
-        startGame();
+    if(wincount === randWord.length) {
+       
+        console.log(underScores);
+        window.setTimeout(startGame,2500);
+        //startGame();
         
         
     } else if(guessesLeft === 0) {
-        alert("you suck");
+       // alert("you suck");
+        window.setTimeout(startGame,2500);
         startGame();
         
         
     }
 };
 
-function newgame() {
-    
-        guessesLeft = 10;
-        underScores = [];
-        startGame();
-    };
+
 
 
 
