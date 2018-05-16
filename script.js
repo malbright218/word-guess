@@ -88,7 +88,7 @@ document.onkeypress = function(event) {
 };
 
 function winlose() {
-    if(wincount === randWord.length) {
+    if(wincount === randWord.length+1) {
         alert("winner");
         startGame();
         
