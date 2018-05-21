@@ -1,9 +1,9 @@
 body {
-    background-color: #242424;
+    background-color: #1a1a1a;
 }
 
 .jumbotron {
-    background-color: #242424;
+    background-color: #1a1a1a;
 }
 
 #word-blanks {
@@ -45,6 +45,7 @@ body {
     -webkit-animation: hue 60s infinite linear;
     text-align: center;
     font-size: 100px;
+    padding: 10px;
 }
 
 .container {
@@ -58,4 +59,18 @@ h4 {
 h1 {
     color: #575757;
     text-align: center;
+}
+
+@media only screen and (max-width:768px) {
+    #word-blanks, #guessedLetters {
+        font-size: 75px;
+    }
+   
+}
+
+@media only screen and (max-width:640px) {
+    #word-blanks, #guessedLetters {
+        font-size: 50px;
+    }
+    
 }

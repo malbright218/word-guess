@@ -88,19 +88,12 @@ document.onkeypress = function(event) {
 };
 
 function winlose() {
-    if(wincount === randWord.length) {
-       
-        console.log(underScores);
-        window.setTimeout(startGame,2500);
-        //startGame();
-        
-        
+    if(wincount === randWord.length) {       
+        console.log(underScores);        
+        window.setTimeout(startGame,1500);
     } else if(guessesLeft === 0) {
-       // alert("you suck");
-        window.setTimeout(startGame,2500);
-        startGame();
-        
-        
+    window.setTimeout(startGame,5);
+    
     }
 };
 
